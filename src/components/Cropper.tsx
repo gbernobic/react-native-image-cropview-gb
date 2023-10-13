@@ -138,7 +138,7 @@ const Cropper: ForwardRefRenderFunction<CropperHandler, CropperProps> = (
       initialOnLayoutWasCalled.current = true
 
       setInitialMeasures(event.nativeEvent.layout)
-      initCropper(event.nativeEvent.layout)
+      initCropper(event.nativeEvent.layout, 50)
     }
 
     // we have a device rotation
@@ -161,7 +161,7 @@ const Cropper: ForwardRefRenderFunction<CropperHandler, CropperProps> = (
    *    or original aspect ratio of the image
    * 2. Resize the image to fit inside the cropper and cover the entire space
    */
-  const initCropper = async (measures: LayoutRectangle) => {
+  const initCropper = async (measures: LayoutRectangle, offset: number = 0) => {
     const imageSize = await getImageSize(uri)
 
     const resizeRatio = imageSize.width / imageSize.height
@@ -187,10 +187,10 @@ const Cropper: ForwardRefRenderFunction<CropperHandler, CropperProps> = (
     const cropperY = (measures.height - cropBoxSize.height) / 2
 
     cropboxRef.current?.resetTo({
-      top: cropperY,
-      bottom: cropperY + cropBoxSize.height,
-      left: cropperX,
-      right: cropperX + cropBoxSize.width,
+      top: cropperY + offset,
+      bottom: cropperY + cropBoxSize.height - offset,
+      left: cropperX + offset,
+      right: cropperX + cropBoxSize.width - offset,
       containerLayout: measures,
     })
 
@@ -258,7 +258,7 @@ const Cropper: ForwardRefRenderFunction<CropperHandler, CropperProps> = (
 
     const measures = await measureInWindow(containerRef)
 
-    initCropper(measures)
+    initCropper(measures, 0)
 
     onReset && onReset()
   }
@@ -338,7 +338,7 @@ const Cropper: ForwardRefRenderFunction<CropperHandler, CropperProps> = (
               backgroundColor={backgroundColor}
               gridColor={gridColor}
             />
-            
+
             <Image
               ref={imageRef}
               cropBoxRefs={cropBoxRefs.current}

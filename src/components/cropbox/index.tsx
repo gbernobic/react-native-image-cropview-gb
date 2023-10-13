@@ -66,7 +66,7 @@ const CropBox: ForwardRefRenderFunction<CropBoxHandler, CropBoxProps> = (
   const [render, rerender] = useState(false)
 
   // Pan gesture handler hitslop
-  const hitSlop = { top: 100, left: 100, right: 100, bottom: 100 }
+  const hitSlop = { top: 30, left: 30, right: 30, bottom: 30 }
 
   // Container layout - updates everytime when layout changes
   const containerLayout = useRef<LayoutRectangle>({
@@ -822,7 +822,7 @@ const CropBox: ForwardRefRenderFunction<CropBoxHandler, CropBoxProps> = (
   const onDragHandlerEnd = () => {
     setActiveHandler(BoxHandlerTypes.None)
     updateImageBounderies(getCurrentBoxBounderies())
-    /*
+    /* GB - disabled autoZoom of cropped area
     cropperAnimationsTimer(() => {
       updateImageBounderies(getNextBoxBounderies())
       scaleRectangleAndFitIntoPosition()
