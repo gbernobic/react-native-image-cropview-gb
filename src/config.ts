@@ -7,7 +7,7 @@ export const animationConfig = {
 }
 
 export const cornerBorderWidth = 2.6
-export const borderWidth = 2
+export const borderWidth = 5
 export const cornerSize = 22
 export const backdropColor = 'rgba(0,0,0,0.85)'
 export const maximumAvailableScale = 20

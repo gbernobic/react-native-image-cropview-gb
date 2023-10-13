@@ -66,7 +66,7 @@ const CropBox: ForwardRefRenderFunction<CropBoxHandler, CropBoxProps> = (
   const [render, rerender] = useState(false)
 
   // Pan gesture handler hitslop
-  const hitSlop = { top: 15, left: 15, right: 15, bottom: 15 }
+  const hitSlop = { top: 0, left: 0, right: 0, bottom: 0 }
 
   // Container layout - updates everytime when layout changes
   const containerLayout = useRef<LayoutRectangle>({
