@@ -822,14 +822,14 @@ const CropBox: ForwardRefRenderFunction<CropBoxHandler, CropBoxProps> = (
   const onDragHandlerEnd = () => {
     setActiveHandler(BoxHandlerTypes.None)
     updateImageBounderies(getCurrentBoxBounderies())
-
+    /*
     cropperAnimationsTimer(() => {
       updateImageBounderies(getNextBoxBounderies())
       scaleRectangleAndFitIntoPosition()
       animateBackdropToOpaque()
 
       indicatorsRef.current?.showGrid(false)
-    })
+    })*/
   }
 
   const onDragHandlerCanceled = () => {
